@@ -1,0 +1,31 @@
+<resources>
+    <string name="app_name">VIOLET</string>
+    <string name="action_settings">Settings</string>
+    <string name="timer">Таймер</string>
+    <string name="number">Цифры</string>
+    <string name="order">Старт</string>
+    <string name="stop">Стоп</string>
+    <string-array name="langList">
+        <item>RUS</item>
+        <item>ENG</item>
+        <item>DE</item>
+        <item>ESP</item>
+    </string-array>
+    <string-array name="numbersRange">
+        <item>0-10</item>
+        <item>11-100</item>
+        <item>101-1000</item>
+    </string-array>
+    <string-array name="menuList">
+        <item>Обучение</item>
+        <item>Тренировка</item>
+        <item>Cтатистика</item>
+        <item>Выход</item>
+    </string-array>
+    <string-array name="timerList">
+        <item>1сек</item>
+        <item>5сек</item>
+        <item>10сек</item>
+        <item>30сек</item>
+    </string-array>
+</resources>
