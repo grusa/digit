@@ -1,6 +1,11 @@
 package ru.ai.digit;
 
 import android.content.Intent;
+import android.media.AudioAttributes;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
+import android.media.SoundPool;
+import android.os.Binder;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.SystemClock;
@@ -29,6 +34,7 @@ import android.widget.Toast;
 
 import java.io.FileDescriptor;
 import java.io.PrintWriter;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 
@@ -44,11 +50,17 @@ public class MainActivity extends AppCompatActivity {
         menuListChose=0,pressedButton=1;//0-btNumbers 1-btHome 2-btTimer
     TextView tvNumber,tvNumberInWords;
     Button btOrder;
-    int countMax=10;
+    int countMax=101;
     Handler handler;
     Runnable runnable;
     Random random;
     NumberInWords numberInWords;
+    //Sounds
+    SoundPool soundPool;
+    SoundPool.Builder soundPoolBilder;
+    HashMap<Integer,Integer> soundPoolMap;
+    private int soundId=1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,6 +84,45 @@ public class MainActivity extends AppCompatActivity {
         chrono.setFormat("Time: %s");
         chrono.setBase(SystemClock.elapsedRealtime());
         numberInWords = new NumberInWords();
+//Completed test it
+        try {
+            soundPoolMap = new HashMap<Integer,Integer>();
+            soundPoolBilder = new SoundPool.Builder();
+            soundPoolBilder.setMaxStreams(5);
+            soundPool = soundPoolBilder.build();
+            soundPoolMap.put(0,soundPool.load(this, R.raw.zero, 5));
+            soundPoolMap.put(1,soundPool.load(this, R.raw.one, 5));
+            soundPoolMap.put(2,soundPool.load(this, R.raw.two, 5));
+            soundPoolMap.put(3,soundPool.load(this, R.raw.three, 5));
+            soundPoolMap.put(4,soundPool.load(this, R.raw.four, 5));
+            soundPoolMap.put(5,soundPool.load(this, R.raw.five, 5));
+            soundPoolMap.put(6,soundPool.load(this, R.raw.six, 5));
+            soundPoolMap.put(7,soundPool.load(this, R.raw.seven, 5));
+            soundPoolMap.put(8,soundPool.load(this, R.raw.eight, 5));
+            soundPoolMap.put(9,soundPool.load(this, R.raw.nine, 5));
+            soundPoolMap.put(10,soundPool.load(this, R.raw.ten, 5));
+            soundPoolMap.put(11,soundPool.load(this, R.raw.eleven, 5));
+            soundPoolMap.put(12,soundPool.load(this, R.raw.twelve, 5));
+            soundPoolMap.put(13,soundPool.load(this, R.raw.thirteen, 5));
+            soundPoolMap.put(14,soundPool.load(this, R.raw.fourteen, 5));
+            soundPoolMap.put(15,soundPool.load(this, R.raw.fifteen, 5));
+            soundPoolMap.put(16,soundPool.load(this, R.raw.sixteen, 5));
+            soundPoolMap.put(17,soundPool.load(this, R.raw.seventeen, 5));
+            soundPoolMap.put(18,soundPool.load(this, R.raw.eighteen, 5));
+            soundPoolMap.put(19,soundPool.load(this, R.raw.nineteen, 5));
+            soundPoolMap.put(20,soundPool.load(this, R.raw.twenty, 5));
+            soundPoolMap.put(30,soundPool.load(this, R.raw.thirty, 5));
+            soundPoolMap.put(40,soundPool.load(this, R.raw.forty, 5));
+            soundPoolMap.put(50,soundPool.load(this, R.raw.fifty, 5));
+            soundPoolMap.put(60,soundPool.load(this, R.raw.sixty, 5));
+            soundPoolMap.put(70,soundPool.load(this, R.raw.seventy, 5));
+            soundPoolMap.put(80,soundPool.load(this, R.raw.eighty, 5));
+            soundPoolMap.put(90,soundPool.load(this, R.raw.ninety, 5));
+            soundPoolMap.put(100,soundPool.load(this, R.raw.hundred, 5));
+        } catch ( Exception e) {
+            Toast.makeText(this,"Error:"+e.getMessage(),Toast.LENGTH_LONG).show();
+        }
+
         random = new Random();
         handler = new Handler();
         runnable = new Runnable() {
@@ -79,8 +130,50 @@ public class MainActivity extends AppCompatActivity {
             public void run() {
                 numb=random.nextInt(countMax);
                 tvNumber.setText(String.valueOf(numb));
-                //TODO number in Words
+                //Completed number in Words
                 tvNumberInWords.setText(numberInWords.convertRus(numb));
+                try {
+                    if (numb<21) {
+                        soundPool.play(soundPoolMap.get(numb), 1, 1, 5, 0, 1f);
+                    } else if (numb<30 ) {
+                        soundPool.play(soundPoolMap.get(20), 1, 1, 1, 0, 1f);
+                        //Completed step by step
+                        Thread.sleep(900);
+                        soundPool.play(soundPoolMap.get(numb-20), 1, 1, 3, 0, 1f);
+                    } else if (numb <40) {
+                        soundPool.play(soundPoolMap.get(30), 1, 1, 1, 0, 1f);
+                        Thread.sleep(900);
+                        soundPool.play(soundPoolMap.get(numb-30), 1, 1, 3, 0, 1f);
+                    } else if (numb <50) {
+                        soundPool.play(soundPoolMap.get(40), 1, 1, 1, 0, 1f);
+                        Thread.sleep(900);
+                        soundPool.play(soundPoolMap.get(numb-40), 1, 1, 3, 0, 1f);
+                    } else if (numb <60) {
+                        soundPool.play(soundPoolMap.get(50), 1, 1, 1, 0, 1f);
+                        Thread.sleep(900);
+                        soundPool.play(soundPoolMap.get(numb-50), 1, 1, 3, 0, 1f);
+                    } else if (numb<70) {
+                        soundPool.play(soundPoolMap.get(60), 1, 1, 1, 0, 1f);
+                        Thread.sleep(900);
+                        soundPool.play(soundPoolMap.get(numb-60), 1, 1, 3, 0, 1f);
+                    } else if (numb < 80) {
+                        soundPool.play(soundPoolMap.get(70), 1, 1, 1, 0, 1f);
+                        Thread.sleep(900);
+                        soundPool.play(soundPoolMap.get(numb-70), 1, 1, 3, 0, 1f);
+                    } else if (numb <90 ) {
+                        soundPool.play(soundPoolMap.get(80), 1, 1, 1, 0, 1f);
+                        Thread.sleep(900);
+                        soundPool.play(soundPoolMap.get(numb-80), 1, 1, 3, 0, 1f);
+                    } else if (numb <100) {
+                        soundPool.play(soundPoolMap.get(90), 1, 1, 1, 0, 1f);
+                        Thread.sleep(900);
+                        soundPool.play(soundPoolMap.get(numb-90), 1, 1, 3, 0, 1f);
+                    } else if (numb==100) {
+                        soundPool.play(soundPoolMap.get(100), 1, 1, 1, 0, 1f);
+                    }
+                } catch (Exception e) {
+                    Toast.makeText(MainActivity.this,e.toString(),Toast.LENGTH_LONG).show();
+                }
 
                 handler.postDelayed(this,timer);
             }
@@ -89,16 +182,15 @@ public class MainActivity extends AppCompatActivity {
     }
     void startLeaning() {
         if (running) {
-            Toast.makeText(this,"True",Toast.LENGTH_LONG).show();
             running=false;
             btOrder.setText(getResources().getString(R.string.order));
             handler.removeCallbacks(runnable);
+            soundPool.stop(soundPoolMap.get(1));
             chrono.stop();
         } else {
-            Toast.makeText(this,"False",Toast.LENGTH_LONG).show();
             btOrder.setText(getResources().getString(R.string.stop));
             //COMPLETED run task for learning
-            handler.postDelayed(runnable,timer); //TODO delayMillis
+            handler.postDelayed(runnable,timer); //COMPLETED delayMillis
             running =  true;
             chrono.setBase(SystemClock.elapsedRealtime());
             chrono.start();
@@ -130,7 +222,7 @@ public class MainActivity extends AppCompatActivity {
                 }break;
             }
         }
-        Snackbar.make(view, "countMax"+countMax,Snackbar.LENGTH_LONG).show();
+        //Snackbar.make(view, "countMax"+countMax,Snackbar.LENGTH_LONG).show();
     }
     //pressedBotton 0-btNumbers 1-btHome 2-btTimer
     public void btNumbersClick (View view ){ //btNumbers

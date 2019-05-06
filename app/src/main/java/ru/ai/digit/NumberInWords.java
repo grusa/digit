@@ -1,8 +1,13 @@
 package ru.ai.digit;
 
+import android.media.AudioManager;
+import android.media.SoundPool;
+
 import java.text.DecimalFormat;
 
 public class NumberInWords {
+
+
         private static final String[] tensNames = { "", " ten", " twenty", " thirty", " forty",
                     " fifty", " sixty", " seventy", " eighty", " ninety" };
         private static final String[] tensNamesRus = { "", " десять", " двадцать", " тридцать", " сорок",
@@ -33,6 +38,14 @@ public class NumberInWords {
                 return soFar;
             return numNames[number] + " hundred" + soFar;
         }
+    public static String[] playXXX(int number) //ToDo delete
+    {
+        String [] playArray=new String[1];
+        playArray[0] = "1";
+
+        return playArray;
+    }
+
     private static String convertXXXRus(int number) {
         String soFar;
         if (number % 100 < 20)
@@ -52,7 +65,7 @@ public class NumberInWords {
         if (number<2) {return " сто" + soFar;}
         else {if (number<3) {return " двести"+soFar;}
         else {if (number <5) {return numNamesRus[number]+"ста"+soFar;}
-        else {return numNamesRus[number] + "сот" + soFar;}}} //TODO сто двести ста/сот
+        else {return numNamesRus[number] + "сот" + soFar;}}} //Completed сто двести ста/сот
     }
     public static String convert(long number)
     {
