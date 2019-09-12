@@ -5,6 +5,8 @@
     <string name="number">Цифры</string>
     <string name="order">Старт</string>
     <string name="stop">Стоп</string>
+    <string name="left"></string>
+    <string name="right"></string>
     <string-array name="langList">
         <item>RUS</item>
         <item>ENG</item>
@@ -23,9 +25,13 @@
         <item>Выход</item>
     </string-array>
     <string-array name="timerList">
-        <item>1сек</item>
+        <item>No time</item>
+        <item>2сек</item>
         <item>5сек</item>
         <item>10сек</item>
         <item>30сек</item>
     </string-array>
+    <string name="shared_preferences">shared_preferences</string>
+    <string name="title_activity_traing">Traing</string>
+    <string name="title_activity_number">Numbers</string>
 </resources>

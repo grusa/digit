@@ -59,26 +59,28 @@
             android:background="@drawable/numbers"
             android:onClick="btNumbersClick" />
     </LinearLayout>
+
     <Chronometer
         android:id="@+id/chrono"
         android:layout_width="162dp"
         android:layout_height="41dp"
-        android:layout_marginStart="124dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
         android:background="@drawable/tablelayoutborder"
-        android:visibility="invisible"
         android:padding="2dp"
         android:textAlignment="center"
         android:textSize="25sp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toStartOf="@+id/number"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/number" />
+        app:layout_constraintTop_toTopOf="@+id/number" />
 
     <TextView
         android:id="@+id/numberInWords"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="697dp"
+        android:layout_height="89dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
         android:text="Пятьнадцать"
@@ -87,21 +89,24 @@
         android:textSize="42sp"
         app:layout_constraintBottom_toTopOf="@+id/guideline2"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/chrono" />
+        app:layout_constraintTop_toBottomOf="@+id/number"
+        app:layout_constraintVertical_bias="0.039" />
+
     <TextView
         android:id="@+id/number"
         android:layout_width="346dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="92dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:text="15"
         android:textAlignment="center"
         android:textColor="@color/colorPrimaryDark"
         android:textSize="65sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.489"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -117,14 +122,14 @@
         android:id="@+id/barrier2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:barrierDirection="top" />
+        app:barrierDirection="top"
+        tools:layout_editor_absoluteY="637dp" />
 
     <ListView
         android:id="@+id/listNumbers"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:background="@color/colorPrimaryDark"
         android:visibility="invisible"
@@ -132,9 +137,22 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
 
+    </ListView>
+
+    <TextView
+        android:id="@+id/tvStatistic"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/table"
+        android:text="TextView"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/barrier2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/linearLayout" />
     <android.support.constraint.Guideline
         android:id="@+id/guideline2"
         android:layout_width="wrap_content"
@@ -142,59 +160,40 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_begin="581dp" />
 
+    <Button
+        android:id="@+id/btOrder"
+        android:layout_width="122dp"
+        android:layout_height="47dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/start"
+        android:onClick="btOrderClick"
+        app:layout_constraintBottom_toTopOf="@+id/barrier2"
+        app:layout_constraintEnd_toStartOf="@+id/btRight"
+        app:layout_constraintStart_toEndOf="@+id/btLeft" />
+
     <ImageButton
         android:id="@+id/btLeft"
-        android:layout_width="54dp"
+        android:layout_width="64dp"
         android:layout_height="47dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginBottom="8dp"
         android:background="@drawable/back"
         android:onClick="btLeftClick"
         android:visibility="invisible"
-        app:layout_constraintBottom_toTopOf="@+id/barrier2"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline2" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <ImageButton
         android:id="@+id/btRight"
         android:layout_width="64dp"
         android:layout_height="47dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
         android:background="@drawable/forvard"
+
         android:onClick="btRightClick"
         android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@+id/barrier2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline2" />
-
-    <Button
-        android:id="@+id/btOrder"
-        android:layout_width="122dp"
-        android:layout_height="47dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:background="@drawable/start"
-        android:onClick="btOrderClick"
-
-        app:layout_constraintBottom_toTopOf="@+id/barrier2"
-        app:layout_constraintEnd_toStartOf="@+id/btRight"
-        app:layout_constraintStart_toEndOf="@+id/btLeft"
-        app:layout_constraintTop_toTopOf="@+id/guideline2"
-        app:layout_constraintVertical_bias="0.451" />
-
-    <TextView
-        android:id="@+id/tvStatistic"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="8dp"
-        android:background="@drawable/table"
-        android:text="TextView"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="@+id/btOrder"
-        app:layout_constraintEnd_toEndOf="@+id/listNumbers"
-        app:layout_constraintStart_toStartOf="@+id/listNumbers"
-        app:layout_constraintTop_toTopOf="@+id/listNumbers" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </android.support.constraint.ConstraintLayout>
